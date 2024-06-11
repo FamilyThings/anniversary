@@ -1,0 +1,321 @@
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #f0e6fa 25%, #e5d4f1 50%, #f0e6fa 75%);
+    color: #4a2f73;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Confetti Effects */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes confetti {
+    0% { transform: rotate(0deg) translateY(0); }
+    100% { transform: rotate(360deg) translateY(100vh); }
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffdd59;
+    opacity: 0.8;
+    animation: confetti 5s linear infinite;
+}
+
+.confetti::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff6b6b;
+    animation: confetti 5s linear infinite reverse;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: #e5d4f1;
+    opacity: 0.6;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: #e5d4f1;
+    opacity: 0.6;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite reverse;
+    z-index: -1;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #6c3483;
+    color: white;
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 1s ease-in-out;
+    border-radius: 0 0 30px 30px;
+    overflow: hidden;
+}
+
+header h1 {
+    font-size: 2em;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+header::before, header::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: url('flower-top.png') no-repeat center center / contain;
+    z-index: 0;
+}
+
+header::before {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+header::after {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+/* Main */
+main {
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.video-section {
+    margin-bottom: 40px;
+    position: relative;
+    padding: 20px;
+    border: 2px solid #6c3483;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(108, 52, 131, 0.5);
+    background-color: rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    animation: bounceIn 2s ease-in-out;
+}
+
+.video-section h2 {
+    margin-bottom: 20px;
+    color: #4a2f73;
+    font-size: 1.5em;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f0e6fa 25%, #e5d4f1 50%, #f0e6fa 75%);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.slideshow-container img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    transition: opacity 1s ease-in-out;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.controls button {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 50%;
+}
+
+.controls button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.controls i {
+    font-size: 1.5em;
+}
+
+/* Animation for slideshow */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0%, 20%, 50%, 80%, 100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+    0% {
+        opacity: 0;
+        transform: scale3d(.3, .3, .3);
+    }
+    20% {
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    50% {
+        transform: scale3d(.9, .9, .9);
+    }
+    80% {
+        transform: scale3d(1.03, 1.03, 1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: scale3d(.97, .97, .97);
+        opacity: 1;
+    }
+}
+
+/* Gallery */
+.gallery-container h2 {
+    margin-bottom: 20px;
+    color: #4a2f73;
+    font-size: 1.5em;
+}
+
+.collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.collage .image {
+    margin: 10px;
+    animation: fadeIn 1s ease-in-out;
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #e5d4f1;
+}
+
+.collage .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #e5d4f1;
+}
+
+.collage .image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for images */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #6c3483;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .video-section h2, .gallery-container h2 {
+        font-size: 1.2em;
+    }
+
+    .slideshow-container img {
+        max-height: 200px;
+    }
+
+    .collage .image {
+        max-width: 150px;
+        max-height: 150px;
+    }
+}
